@@ -1,0 +1,96 @@
+### QR Code vCard API Test File
+### Update the @baseUrl to match your local development port
+
+@baseUrl = https://localhost:7163
+
+### Generate QR Code as PNG Image (Download)
+POST {{baseUrl}}/api/vcardqr/generate?format=image
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@example.com",
+  "phone": "+1-555-0123",
+  "organization": "Acme Corporation",
+  "title": "Software Engineer",
+  "street": "123 Main Street",
+  "city": "New York",
+  "state": "NY",
+  "postalCode": "10001",
+  "country": "USA",
+  "website": "https://johndoe.com",
+  "notes": "Available for consulting"
+}
+
+###
+
+### Generate QR Code as PDF (Download)
+POST {{baseUrl}}/api/vcardqr/generate?format=pdf
+Content-Type: application/json
+
+{
+  "firstName": "Jane",
+  "lastName": "Smith",
+  "email": "jane.smith@example.com",
+  "phone": "+1-555-0456",
+  "organization": "Tech Innovations Inc",
+  "title": "Product Manager",
+  "street": "456 Oak Avenue",
+  "city": "San Francisco",
+  "state": "CA",
+  "postalCode": "94102",
+  "country": "USA",
+  "website": "https://janesmith.dev"
+}
+
+###
+
+### Generate QR Code as PNG (Download)
+POST {{baseUrl}}/api/vcardqr/generate?format=png
+Content-Type: application/json
+
+{
+  "firstName": "Michael",
+  "lastName": "Johnson",
+  "email": "m.johnson@company.com",
+  "phone": "+1-555-0789"
+}
+
+###
+
+### Generate QR Code - Return Base64 Image in JSON (Best for Web Display)
+POST {{baseUrl}}/api/vcardqr/generate?format=both
+Content-Type: application/json
+
+{
+  "firstName": "Alice",
+  "lastName": "Williams",
+  "email": "alice.williams@tech.com",
+  "phone": "+1-555-0999",
+  "organization": "Digital Solutions LLC",
+  "title": "Design Lead"
+}
+
+###
+
+### Generate QR Code - Minimal Request (Only First Name Required)
+POST {{baseUrl}}/api/vcardqr/generate?format=image
+Content-Type: application/json
+
+{
+  "firstName": "Sarah"
+}
+
+###
+
+### Test Error Handling - Missing Required Field (FirstName)
+POST {{baseUrl}}/api/vcardqr/generate
+Content-Type: application/json
+
+{
+  "lastName": "Test",
+  "email": "test@example.com"
+}
+
+###
